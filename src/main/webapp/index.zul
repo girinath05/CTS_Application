@@ -1,6 +1,6 @@
 <zk>
     <window border="normal" hflex="min" style="margin:0 auto;" title="Welcome! New User">
         
-        <label value="Demo page of CTS" />
+        <label value="CTS Application" />
     </window>
 </zk>
