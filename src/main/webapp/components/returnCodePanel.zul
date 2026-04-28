@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <style>
+        .rcp-wrapper {
+            background:#FEF2F2; border:1px solid #FECACA;
+            border-radius:10px; padding:14px;
+            margin-top:10px;
+            font-family:"Segoe UI",Arial,sans-serif;
+        }
+        .rcp-label { font-size:13px; font-weight:600; color:#991B1B; display:block; margin-bottom:8px; }
+    </style>
+
+    <div id="rcp_wrapper" sclass="rcp-wrapper" visible="false">
+        <label sclass="rcp-label" value="Select CTS Return Code" />
+        <combobox id="rcp_combo"
+                  width="100%"
+                  readonly="true"
+                  placeholder="— Pick a return code —"
+                  style="border:1px solid #FECACA; border-radius:6px; padding:8px;">
+            <comboitem label="01 - Funds Insufficient" />
+            <comboitem label="02 - Signature Mismatch" />
+            <comboitem label="03 - Account Closed" />
+            <comboitem label="04 - Payment Stopped" />
+            <comboitem label="05 - Cheque Expired" />
+            <comboitem label="06 - Drawer Signature Absent" />
+            <comboitem label="07 - Amount in Words / Figures Differ" />
+            <comboitem label="08 - Crossed Cheque / Cannot Pay Cash" />
+        </combobox>
+    </div>
+</zk>
