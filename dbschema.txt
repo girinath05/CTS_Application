@@ -1,0 +1,32 @@
+-- Run in pgAdmin or psql
+
+
+CREATE TABLE cheques (
+    id          SERIAL PRIMARY KEY,
+    drawer_name     VARCHAR(100),
+    bank_name       VARCHAR(100),
+    branch_name     VARCHAR(100),
+    micr_code       VARCHAR(20),
+    cheque_number   VARCHAR(20) NOT NULL,
+    account_number  VARCHAR(30),
+    amount_digits   VARCHAR(20),
+    amount_words    VARCHAR(200),
+    cheque_date     VARCHAR(20),
+    payee_name      VARCHAR(100),
+    status          VARCHAR(30) DEFAULT 'SUBMITTED',
+    submitted_date  DATE DEFAULT CURRENT_DATE,
+    batch_id        VARCHAR(20)
+);
+
+CREATE TABLE batches (
+    id              VARCHAR(20) PRIMARY KEY,
+    cheque_count    INT,
+    total_amount    VARCHAR(30),
+    status          VARCHAR(20) DEFAULT 'PENDING',
+    date_received   DATE DEFAULT CURRENT_DATE,
+    approved_on     DATE,
+    rejected_on     DATE
+);
+
+select * from cheques;
+select * from batches;

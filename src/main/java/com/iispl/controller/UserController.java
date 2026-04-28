@@ -1,4 +1,4 @@
-package com.cts.controller;
+package com.iispl.controller;
 
 import com.cts.model.Cheque;
 import com.cts.service.ChequeService;
