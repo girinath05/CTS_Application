@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <div style="display:flex; gap:10px; margin-top:16px;">
+        <button id="arb_btnApprove"
+                label="✔ Approve"
+                style="background:#2E7D32; color:white; border:none;
+                       border-radius:8px; padding:10px 24px;
+                       font-size:14px; font-weight:600; cursor:pointer; flex:1;" />
+        <button id="arb_btnReject"
+                label="✘ Reject"
+                style="background:#DC2626; color:white; border:none;
+                       border-radius:8px; padding:10px 24px;
+                       font-size:14px; font-weight:600; cursor:pointer; flex:1;" />
+    </div>
+</zk>

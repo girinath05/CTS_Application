@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <style>
+        .ff-wrapper { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; font-family:"Segoe UI",Arial,sans-serif; }
+        .ff-label   { font-size:13px; color:#374151; font-weight:600; display:block; }
+        .ff-required { color:#DC2626; margin-left:2px; }
+    </style>
+
+    <div sclass="ff-wrapper">
+        <div>
+            <label id="ff_label"    sclass="ff-label" value="Field" />
+            <label id="ff_required" sclass="ff-required" value="" />
+        </div>
+        <textbox id="ff_input"
+                 width="100%"
+                 style="padding:9px 12px; border:1px solid #D1D5DB;
+                        border-radius:8px; font-size:14px;" />
+    </div>
+</zk>
