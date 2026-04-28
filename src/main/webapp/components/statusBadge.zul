@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <label id="sb_label"
+           style="padding:4px 12px; border-radius:20px; font-size:12px;
+                  font-weight:700; color:white; display:inline-block;
+                  font-family:'Segoe UI',Arial,sans-serif;"
+           value="STATUS" />
+</zk>
