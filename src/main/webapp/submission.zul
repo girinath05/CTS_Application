@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="CTS - Cheque Submission"?>
+
+<?component name="pageheader" macroURI="/components/pageHeader.zul" class="com.cts.components.PageHeader"?>
+
+<zk>
+<window apply="com.iispl.controller.UserController"
+        width="100%"
+        style="min-height:100vh; background:#F5F7FA;
+               font-family:'Segoe UI',Arial,sans-serif;">
+
+    <pageheader userLabel="📝 Submission" />
+
+    <div style="padding:16px 28px;">
+
+        <!-- Back button -->
+        <div style="margin-bottom:12px;">
+            <button id="btnDashboard"
+                    label="← Back to Dashboard"
+                    style="background:transparent; color:#1A3C6E; border:none;
+                           font-size:13px; cursor:pointer; font-weight:600;
+                           text-decoration:underline;"/>
+        </div>
+
+        <!-- Message label -->
+        <label id="lblMessage" value=""
+               style="font-size:13px; display:block; margin-bottom:10px;"/>
+
+        <!-- SUBMISSION FORM -->
+        <div style="background:white; border:1px solid #E5E7EB; border-radius:12px;
+                    padding:22px; margin-bottom:18px;
+                    box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+
+            <label value="Cheque Submission Form"
+                   style="font-size:17px; font-weight:700; color:#1A3C6E;
+                          display:block; margin-bottom:16px;"/>
+
+            <!-- Row 1: Drawer Name | Bank Name -->
+            <div style="display:flex; gap:14px; margin-bottom:12px;">
+                <div style="flex:1;">
+                    <label value="Drawer Name *"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbDrawerName" width="100%"
+                             placeholder="Enter drawer name"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+                <div style="flex:1;">
+                    <label value="Bank Name"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbBankName" width="100%"
+                             placeholder="e.g. SBI, HDFC, Kotak"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+            </div>
+
+            <!-- Row 2: Branch Name | MICR Code -->
+            <div style="display:flex; gap:14px; margin-bottom:12px;">
+                <div style="flex:1;">
+                    <label value="Branch Name"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbBranchName" width="100%"
+                             placeholder="Enter branch name"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+                <div style="flex:1;">
+                    <label value="MICR Code"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbMicrCode" width="100%"
+                             placeholder="e.g. 400002001"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+            </div>
+
+            <!-- Row 3: Cheque Number | Account Number -->
+            <div style="display:flex; gap:14px; margin-bottom:12px;">
+                <div style="flex:1;">
+                    <label value="Cheque Number *"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbChequeNumber" width="100%"
+                             placeholder="6-digit number"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+                <div style="flex:1;">
+                    <label value="Account Number"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbAccountNumber" width="100%"
+                             placeholder="Enter account number"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+            </div>
+
+            <!-- Row 4: Amount in Digits (dropdown) | Amount in Words (auto-filled) -->
+            <div style="display:flex; gap:14px; margin-bottom:12px;">
+                <div style="flex:1;">
+                    <label value="Amount in Digits *"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <!--
+                        Combobox lets user either:
+                        - Pick a common amount from the dropdown list
+                        - OR type any custom amount manually
+                        onChange fires onAmountChange() in UserController
+                        which auto-fills Amount in Words
+                    -->
+                    <combobox id="tbAmountDigits" width="100%"
+                              placeholder="Select or type amount"
+                              style="padding:8px 10px; border:1px solid #D1D5DB;
+                                     border-radius:7px; font-size:13px;">
+                        <comboitem label="500"/>
+                        <comboitem label="1000"/>
+                        <comboitem label="2000"/>
+                        <comboitem label="5000"/>
+                        <comboitem label="10000"/>
+                        <comboitem label="25000"/>
+                        <comboitem label="50000"/>
+                        <comboitem label="100000"/>
+                        <comboitem label="500000"/>
+                        <comboitem label="1000000"/>
+                    </combobox>
+                </div>
+                <div style="flex:1;">
+                    <label value="Amount in Words"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <!--
+                        Read-only — gets filled automatically by UserController
+                        when user picks/types in the Amount in Digits combobox
+                    -->
+                    <textbox id="tbAmountWords" width="100%"
+                             placeholder="Auto-filled when you enter amount"
+                             readonly="true"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;
+                                    background:#F9FAFB; color:#374151;"/>
+                </div>
+            </div>
+
+            <!-- Row 5: Cheque Date | Payee Name -->
+            <div style="display:flex; gap:14px; margin-bottom:20px;">
+                <div style="flex:1;">
+                    <label value="Cheque Date *"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <datebox id="dbChequeDate" width="100%"
+                             format="yyyy-MM-dd"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+                <div style="flex:1;">
+                    <label value="Payee Name"
+                           style="font-size:12px; color:#374151; font-weight:600;
+                                  display:block; margin-bottom:3px;"/>
+                    <textbox id="tbPayeeName" width="100%"
+                             placeholder="Enter payee name"
+                             style="padding:8px 10px; border:1px solid #D1D5DB;
+                                    border-radius:7px; font-size:13px;"/>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div style="display:flex; gap:10px;">
+                <button id="btnClear"
+                        label="Clear Form"
+                        style="padding:9px 22px; border:1px solid #D1D5DB;
+                               border-radius:8px; background:white;
+                               font-size:13px; cursor:pointer;"/>
+                <button id="btnSubmit"
+                        label="✔ Submit Cheque"
+                        style="padding:9px 22px; background:#1A3C6E; color:white;
+                               border:none; border-radius:8px;
+                               font-size:13px; font-weight:600; cursor:pointer;"/>
+            </div>
+        </div>
+
+        <!-- MY SUBMITTED CHEQUES -->
+        <div style="background:white; border:1px solid #E5E7EB; border-radius:12px;
+                    padding:22px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+
+            <label value="My Submitted Cheques"
+                   style="font-size:17px; font-weight:700; color:#1A3C6E;
+                          display:block; margin-bottom:14px;"/>
+
+            <label id="lblEmptyCheques"
+                   value="No cheques submitted yet."
+                   visible="false"
+                   style="color:#9CA3AF; font-size:13px;"/>
+
+            <listbox id="lbMyCheques" style="width:100%;" rows="8">
+                <listhead>
+                    <listheader label="Cheque No"  width="160px"/>
+                    <listheader label="Amount"     width="140px"/>
+                    <listheader label="Date"       width="130px"/>
+                    <listheader label="Status"/>
+                </listhead>
+            </listbox>
+        </div>
+
+    </div>
+</window>
+</zk>

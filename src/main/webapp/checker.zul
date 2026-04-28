@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="CTS - Checker Dashboard"?>
+
+<?component name="pageheader" macroURI="/components/pageHeader.zul" class="com.cts.components.PageHeader"?>
+
+<zk>
+<window apply="com.iispl.controller.CheckerController"
+        width="100%"
+        style="min-height:100vh; background:#F5F7FA;
+               font-family:'Segoe UI',Arial,sans-serif;">
+
+    <pageheader userLabel="✅ Checker" />
+
+    <div style="padding:14px 22px;">
+
+        <!-- Back button -->
+        <div style="margin-bottom:12px;">
+            <button id="btnDashboard"
+                    label="← Back to Dashboard"
+                    style="background:transparent; color:#1A3C6E; border:none;
+                           font-size:13px; cursor:pointer; font-weight:600;
+                           text-decoration:underline;"/>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+
+            <!-- LEFT PANEL -->
+            <div style="width:280px; background:white; border:1px solid #E5E7EB;
+                        border-radius:12px; padding:14px;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+
+                <label value="Maker Approved Cheques"
+                       style="font-size:13px; font-weight:700; color:#F57C00;
+                              display:block; margin-bottom:10px;"/>
+
+                <label id="lblNoData"
+                       value="No cheques pending for verification."
+                       visible="false"
+                       style="color:#9CA3AF; font-size:13px;"/>
+
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                    <checkbox id="chkSelectAll" label="Select All"/>
+                </div>
+
+                <listbox id="lbApprovedCheques" style="width:100%;" rows="14">
+                    <listhead>
+                        <listheader label="✓"         width="40px"/>
+                        <listheader label="Cheque No" width="100px"/>
+                        <listheader label="Drawer"/>
+                    </listhead>
+                </listbox>
+
+                <separator height="8px"/>
+
+                <button id="btnBulkReject"
+                        label="Bulk Reject (0)"
+                        style="background:#9CA3AF; color:white; border:none;
+                               border-radius:6px; padding:8px;
+                               cursor:pointer; font-size:13px; width:100%;"/>
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div style="flex:1; background:white; border:1px solid #E5E7EB;
+                        border-radius:12px; padding:20px;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+
+                <label id="lblMessage" value=""
+                       style="font-size:13px; display:block; margin-bottom:10px;"/>
+
+                <label id="lblHint"
+                       value="← Select a cheque from the list to verify"
+                       style="color:#9CA3AF; font-size:14px; display:block;
+                              text-align:center; padding:50px 0;"/>
+
+                <vlayout id="detailArea" visible="false">
+
+                    <div style="display:flex; gap:10px; align-items:center; margin-bottom:16px;">
+                        <label value="Cheque Details"
+                               style="font-size:17px; font-weight:700; color:#1A3C6E;"/>
+                        <label value="READ ONLY"
+                               style="font-size:11px; background:#E5E7EB; padding:2px 8px;
+                                      border-radius:4px; color:#6B7280;"/>
+                    </div>
+
+                    <!-- Row 1 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Drawer Name"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblDrawerName" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Bank Name"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblBankName" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Branch Name"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblBranchName" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="MICR Code"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblMicrCode" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Cheque Number"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblChequeNumber" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Account Number"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblAccountNumber" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Amount in Digits"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblAmountDigits" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Amount in Words"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblAmountWords" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 5 -->
+                    <div style="display:flex; gap:14px; margin-bottom:16px;">
+                        <div style="flex:1;">
+                            <label value="Cheque Date"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblChequeDate" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Payee Name"
+                                   style="font-size:12px; color:#6B7280; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <label id="lblPayeeName" value="—"
+                                   style="font-size:14px; color:#111827; font-weight:500;"/>
+                        </div>
+                    </div>
+
+                    <separator/>
+
+                    <!-- VERIFICATION CHECKLIST -->
+                    <div style="background:#FFFBEB; border:1px solid #FDE68A;
+                                border-radius:10px; padding:14px; margin-bottom:14px;">
+                        <label value="Verification Checklist"
+                               style="font-size:12px; font-weight:700; color:#92400E;
+                                      display:block; margin-bottom:8px;"/>
+                        <div style="margin-bottom:6px;">
+                            <checkbox id="chkDetailsVerified"
+                                      label="All cheque details are verified"/>
+                        </div>
+                        <div style="margin-bottom:6px;">
+                            <checkbox id="chkDateValid"
+                                      label="Cheque date is valid and not stale"/>
+                        </div>
+                        <div>
+                            <checkbox id="chkAmountMatch"
+                                      label="Amount in digits matches amount in words"/>
+                        </div>
+                    </div>
+
+                    <separator/>
+
+                    <!-- RETURN CODE -->
+                    <div style="background:#FEF2F2; border:1px solid #FECACA;
+                                border-radius:10px; padding:12px; margin-bottom:14px;">
+                        <label value="CTS Return Code (required for rejection)"
+                               style="font-size:12px; font-weight:600; color:#991B1B;
+                                      display:block; margin-bottom:7px;"/>
+                        <combobox id="cbReturnCode"
+                                  width="100%"
+                                  readonly="true"
+                                  placeholder="— Select a return code —"
+                                  style="border:1px solid #FECACA; border-radius:6px; padding:7px;">
+                            <comboitem label="01 - Drawer Signature Absent"/>
+                            <comboitem label="02 - Drawer Signature Incomplete"/>
+                            <comboitem label="03 - Alterations in Cheque"/>
+                            <comboitem label="04 - Amount in Words and Figures Differ"/>
+                            <comboitem label="05 - Stale Cheque"/>
+                            <comboitem label="06 - Post-Dated Cheque"/>
+                            <comboitem label="07 - Cheque Mutilated"/>
+                            <comboitem label="08 - Payee Name Required"/>
+                        </combobox>
+                    </div>
+
+                    <!-- APPROVE / REJECT BUTTONS -->
+                    <div style="display:flex; gap:10px;">
+                        <button id="btnApprove"
+                                label="✔ Approve"
+                                disabled="true"
+                                style="flex:1; padding:10px; background:#2E7D32; color:white;
+                                       border:none; border-radius:8px;
+                                       font-size:13px; font-weight:600; cursor:pointer;"/>
+                        <button id="btnReject"
+                                label="✘ Reject"
+                                style="flex:1; padding:10px; background:#DC2626; color:white;
+                                       border:none; border-radius:8px;
+                                       font-size:13px; font-weight:600; cursor:pointer;"/>
+                    </div>
+
+                </vlayout>
+            </div>
+
+        </div>
+    </div>
+</window>
+</zk>

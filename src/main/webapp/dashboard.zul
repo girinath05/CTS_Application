@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="CTS - Dashboard"?>
+
+<?component name="pageheader" macroURI="/components/pageHeader.zul" class="com.cts.components.PageHeader"?>
+<?component name="modulecard" macroURI="/components/moduleCard.zul" class="com.cts.components.ModuleCard"?>
+
+<zk>
+<window apply="com.iispl.controller.DashboardController"
+        width="100%"
+        style="min-height:100vh; background:#F5F7FA;
+               font-family:'Segoe UI',Arial,sans-serif;">
+
+    <pageheader userLabel="👤 Admin" />
+
+    <div style="padding:18px 28px;">
+
+        <!-- Page Title -->
+        <div style="margin-bottom:18px;">
+            <label value="CTS Dashboard"
+                   style="font-size:24px; font-weight:700; color:#1A3C6E; display:block;"/>
+            <label value="Cheque Truncation System — Central Management Console"
+                   style="font-size:13px; color:#6B7280; display:block; margin-top:3px;"/>
+        </div>
+
+        <!-- QUICK STATS -->
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:20px;">
+
+            <div style="background:white; border-radius:12px; padding:16px 20px; flex:1;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.06); min-width:140px;">
+                <label id="lblPendingCount" value="0"
+                       style="font-size:28px; font-weight:700; color:#1A3C6E; display:block;"/>
+                <label value="Pending Submissions"
+                       style="font-size:12px; color:#6B7280; display:block;"/>
+            </div>
+
+            <div style="background:white; border-radius:12px; padding:16px 20px; flex:1;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.06); min-width:140px;">
+                <label id="lblMakerCount" value="0"
+                       style="font-size:28px; font-weight:700; color:#2E7D32; display:block;"/>
+                <label value="Awaiting Maker"
+                       style="font-size:12px; color:#6B7280; display:block;"/>
+            </div>
+
+            <div style="background:white; border-radius:12px; padding:16px 20px; flex:1;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.06); min-width:140px;">
+                <label id="lblCheckerCount" value="0"
+                       style="font-size:28px; font-weight:700; color:#F57C00; display:block;"/>
+                <label value="Awaiting Checker"
+                       style="font-size:12px; color:#6B7280; display:block;"/>
+            </div>
+
+            <div style="background:white; border-radius:12px; padding:16px 20px; flex:1;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.06); min-width:140px;">
+                <label id="lblBatchCount" value="0"
+                       style="font-size:28px; font-weight:700; color:#1976D2; display:block;"/>
+                <label value="Active Batches"
+                       style="font-size:12px; color:#6B7280; display:block;"/>
+            </div>
+
+        </div>
+
+        <!-- MODULE CARDS -->
+        <div style="background:white; border-radius:16px; padding:22px;
+                    box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+
+            <label value="🗂 System Modules"
+                   style="font-size:18px; font-weight:700; color:#1A3C6E;
+                          display:block; margin-bottom:16px;"/>
+
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px;">
+
+                <div id="cardSubmission" style="cursor:pointer;">
+                    <modulecard moduleIcon="📝"
+                                moduleTitle="Cheque Submission"
+                                moduleDesc="Submit and track cheque requests"
+                                iconBg="linear-gradient(135deg,#1A3C6E,#2563A8)" />
+                </div>
+
+                <div id="cardMaker" style="cursor:pointer;">
+                    <modulecard moduleIcon="✏️"
+                                moduleTitle="Maker Dashboard"
+                                moduleDesc="Review and approve submitted cheques"
+                                iconBg="linear-gradient(135deg,#2E7D32,#43A047)" />
+                </div>
+
+                <div id="cardChecker" style="cursor:pointer;">
+                    <modulecard moduleIcon="✅"
+                                moduleTitle="Checker Dashboard"
+                                moduleDesc="Verify maker-approved cheques"
+                                iconBg="linear-gradient(135deg,#F57C00,#FB8C00)" />
+                </div>
+
+                <div id="cardBatch" style="cursor:pointer;">
+                    <modulecard moduleIcon="📦"
+                                moduleTitle="Batch Management"
+                                moduleDesc="Create and manage cheque batches"
+                                iconBg="linear-gradient(135deg,#1976D2,#1E88E5)" />
+                </div>
+
+                <div id="cardClearing" style="cursor:pointer;">
+                    <modulecard moduleIcon="🏛️"
+                                moduleTitle="Clearing House"
+                                moduleDesc="Process batch approvals and rejections"
+                                iconBg="linear-gradient(135deg,#7B1FA2,#8E24AA)" />
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Logged in as -->
+        <div style="margin-top:12px; text-align:right;">
+            <label value="Logged in as: "
+                   style="font-size:12px; color:#9CA3AF;"/>
+            <label id="lblUsername" value=""
+                   style="font-size:12px; color:#6B7280; font-weight:600;"/>
+        </div>
+
+    </div>
+
+</window>
+</zk>

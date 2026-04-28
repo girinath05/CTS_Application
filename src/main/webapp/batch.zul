@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="CTS - Batch Management"?>
+
+<?component name="pageheader" macroURI="/components/pageHeader.zul" class="com.cts.components.PageHeader"?>
+
+<zk>
+<window apply="com.iispl.controller.BatchController"
+        width="100%"
+        style="min-height:100vh; background:#F5F7FA;
+               font-family:'Segoe UI',Arial,sans-serif;">
+
+    <pageheader userLabel="📦 Batch Officer" />
+
+    <div style="padding:14px 28px;">
+
+        <!-- Back button -->
+        <div style="margin-bottom:12px;">
+            <button id="btnDashboard"
+                    label="← Back to Dashboard"
+                    style="background:transparent; color:#1A3C6E; border:none;
+                           font-size:13px; cursor:pointer; font-weight:600;
+                           text-decoration:underline;"/>
+        </div>
+
+        <!-- Message label -->
+        <label id="lblMessage" value=""
+               style="font-size:13px; display:block; margin-bottom:10px;"/>
+
+        <!-- SECTION 1: Unbatched cheques ready to batch -->
+        <div style="background:white; border:1px solid #E5E7EB; border-radius:12px;
+                    padding:20px; margin-bottom:18px;
+                    box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+
+            <label value="Checker Approved Cheques — Ready to Batch"
+                   style="font-size:17px; font-weight:700; color:#1A3C6E;
+                          display:block; margin-bottom:14px;"/>
+
+            <label id="lblNoUnbatched"
+                   value="No cheques available for batching."
+                   visible="false"
+                   style="color:#9CA3AF; font-size:13px; display:block; margin-bottom:8px;"/>
+
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <checkbox id="chkSelectAll" label="Select All"/>
+            </div>
+
+            <listbox id="lbUnbatched" style="width:100%;" rows="7">
+                <listhead>
+                    <listheader label="✓"           width="40px"/>
+                    <listheader label="Cheque No"   width="150px"/>
+                    <listheader label="Drawer Name" width="200px"/>
+                    <listheader label="Amount"      width="130px"/>
+                    <listheader label="Date"        width="120px"/>
+                </listhead>
+            </listbox>
+
+            <separator height="12px"/>
+
+            <button id="btnCreateBatch"
+                    label="➕ Create Batch from Selected"
+                    style="padding:9px 22px; background:#1976D2; color:white;
+                           border:none; border-radius:8px;
+                           font-size:13px; font-weight:600; cursor:pointer;"/>
+        </div>
+
+        <!-- SECTION 2: Existing batches -->
+        <div style="background:white; border:1px solid #E5E7EB; border-radius:12px;
+                    padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+
+            <label value="Existing Batches"
+                   style="font-size:17px; font-weight:700; color:#1A3C6E;
+                          display:block; margin-bottom:14px;"/>
+
+            <label id="lblNoBatches"
+                   value="No batches created yet."
+                   visible="false"
+                   style="color:#9CA3AF; font-size:13px; display:block; margin-bottom:8px;"/>
+
+            <listbox id="lbBatches" style="width:100%;" rows="7">
+                <listhead>
+                    <listheader label="Batch ID"     width="150px"/>
+                    <listheader label="Cheque Count" width="130px"/>
+                    <listheader label="Status"       width="130px"/>
+                    <listheader label="Action"/>
+                </listhead>
+            </listbox>
+        </div>
+
+    </div>
+</window>
+</zk>
