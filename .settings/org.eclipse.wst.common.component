@@ -9,6 +9,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+<<<<<<< HEAD
+=======
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+>>>>>>> cfa985e (created moduleCard component , dashbaord controller , cheque batch service)
                 
         <property name="context-root" value="cts_demo"/>
                 
