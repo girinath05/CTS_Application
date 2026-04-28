@@ -1,4 +1,4 @@
-package com.cts.controller;
+package com.iispl.controller;
 
 import com.cts.model.Batch;
 import com.cts.model.Cheque;
