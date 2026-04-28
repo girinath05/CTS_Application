@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="CTS - Maker Dashboard"?>
+
+<?component name="pageheader" macroURI="/components/pageHeader.zul" class="com.cts.components.PageHeader"?>
+
+<zk>
+<window apply="com.iispl.controller.MakerController"
+        width="100%"
+        style="min-height:100vh; background:#F5F7FA;
+               font-family:'Segoe UI',Arial,sans-serif;">
+
+    <pageheader userLabel="✏️ Maker" />
+
+    <div style="padding:14px 22px;">
+
+        <!-- Back button -->
+        <div style="margin-bottom:12px;">
+            <button id="btnDashboard"
+                    label="← Back to Dashboard"
+                    style="background:transparent; color:#1A3C6E; border:none;
+                           font-size:13px; cursor:pointer; font-weight:600;
+                           text-decoration:underline;"/>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+
+            <!-- LEFT PANEL: Pending cheque list -->
+            <div style="width:280px; background:white; border:1px solid #E5E7EB;
+                        border-radius:12px; padding:14px;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+
+                <label value="Pending Cheques"
+                       style="font-size:13px; font-weight:700; color:#2E7D32;
+                              display:block; margin-bottom:10px;"/>
+
+                <label id="lblNoData"
+                       value="No pending cheques."
+                       visible="false"
+                       style="color:#9CA3AF; font-size:13px;"/>
+
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                    <checkbox id="chkSelectAll" label="Select All"/>
+                </div>
+
+                <listbox id="lbPendingCheques" style="width:100%;" rows="14">
+                    <listhead>
+                        <listheader label="✓"         width="40px"/>
+                        <listheader label="Cheque No" width="100px"/>
+                        <listheader label="Drawer"/>
+                    </listhead>
+                </listbox>
+
+                <separator height="8px"/>
+
+                <button id="btnBulkReject"
+                        label="Bulk Reject (0)"
+                        style="background:#9CA3AF; color:white; border:none;
+                               border-radius:6px; padding:8px;
+                               cursor:pointer; font-size:13px; width:100%;"/>
+            </div>
+
+            <!-- RIGHT PANEL: Cheque detail form -->
+            <div style="flex:1; background:white; border:1px solid #E5E7EB;
+                        border-radius:12px; padding:20px;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+
+                <label value="Cheque Details"
+                       style="font-size:17px; font-weight:700; color:#1A3C6E;
+                              display:block; margin-bottom:12px;"/>
+
+                <label id="lblMessage" value=""
+                       style="font-size:13px; display:block; margin-bottom:10px;"/>
+
+                <label id="lblHint"
+                       value="← Select a cheque from the list to view details"
+                       style="color:#9CA3AF; font-size:14px; display:block;
+                              text-align:center; padding:50px 0;"/>
+
+                <vlayout id="formArea" visible="false">
+
+                    <!-- Row 1 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Drawer Name"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbDrawerName" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Bank Name"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbBankName" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Branch Name"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbBranchName" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="MICR Code"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbMicrCode" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Cheque Number"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbChequeNumber" readonly="true" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px; background:#F9FAFB;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Account Number"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbAccountNumber" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div style="display:flex; gap:14px; margin-bottom:12px;">
+                        <div style="flex:1;">
+                            <label value="Amount in Digits"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbAmountDigits" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Amount in Words"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbAmountWords" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                    </div>
+
+                    <!-- Row 5 -->
+                    <div style="display:flex; gap:14px; margin-bottom:16px;">
+                        <div style="flex:1;">
+                            <label value="Cheque Date"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbChequeDate" width="100%"
+                                     placeholder="yyyy-MM-dd"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                        <div style="flex:1;">
+                            <label value="Payee Name"
+                                   style="font-size:12px; color:#374151; font-weight:600;
+                                          display:block; margin-bottom:3px;"/>
+                            <textbox id="tbPayeeName" width="100%"
+                                     style="padding:8px 10px; border:1px solid #D1D5DB;
+                                            border-radius:7px; font-size:13px;"/>
+                        </div>
+                    </div>
+
+                    <separator/>
+
+                    <!-- RETURN CODE -->
+                    <div style="background:#FEF2F2; border:1px solid #FECACA;
+                                border-radius:10px; padding:12px; margin-bottom:14px;">
+                        <label value="CTS Return Code (required for rejection)"
+                               style="font-size:12px; font-weight:600; color:#991B1B;
+                                      display:block; margin-bottom:7px;"/>
+                        <combobox id="cbReturnCode"
+                                  width="100%"
+                                  readonly="true"
+                                  placeholder="— Select a return code —"
+                                  style="border:1px solid #FECACA; border-radius:6px; padding:7px;">
+                            <comboitem label="01 - Drawer Signature Absent"/>
+                            <comboitem label="02 - Drawer Signature Incomplete"/>
+                            <comboitem label="03 - Alterations in Cheque"/>
+                            <comboitem label="04 - Amount in Words and Figures Differ"/>
+                            <comboitem label="05 - Stale Cheque"/>
+                            <comboitem label="06 - Post-Dated Cheque"/>
+                            <comboitem label="07 - Cheque Mutilated"/>
+                            <comboitem label="08 - Payee Name Required"/>
+                        </combobox>
+                    </div>
+
+                    <!-- APPROVE / REJECT BUTTONS -->
+                    <div style="display:flex; gap:10px;">
+                        <button id="btnApprove"
+                                label="✔ Approve"
+                                style="flex:1; padding:10px; background:#2E7D32; color:white;
+                                       border:none; border-radius:8px;
+                                       font-size:13px; font-weight:600; cursor:pointer;"/>
+                        <button id="btnReject"
+                                label="✘ Reject"
+                                style="flex:1; padding:10px; background:#DC2626; color:white;
+                                       border:none; border-radius:8px;
+                                       font-size:13px; font-weight:600; cursor:pointer;"/>
+                    </div>
+
+                </vlayout>
+            </div>
+
+        </div>
+    </div>
+</window>
+</zk>
